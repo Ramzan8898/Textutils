@@ -1,13 +1,13 @@
 import './App.css';
 import Form from './components/Form';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import React, { useState } from 'react'
-// import {
-//     BrowserRouter as Router,
-//     Route,
-//     Routes,
-// } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+} from "react-router-dom";
 
 function App() {
     const handleDarkMode = () => {
@@ -50,16 +50,16 @@ function App() {
     const [darkMode, setDarkMode] = useState('light');
     const [screen, setScreen] = useState({ width: 'auto' });
     return (
-        // <Router>
+        <Router>
             <div>
                 <Navbar title="TextUtils" mode={darkMode} toggleMode={handleDarkMode} modeText={modetText} />
-                <Form title="Enter Your Text Below" view={screen} smallScreen={handletoSmallScreen} fullScreen={handletoFullScreen} />
+                {/* <Form title="Enter Your Text Below" view={screen} smallScreen={handletoSmallScreen} fullScreen={handletoFullScreen} /> */}
             </div>
-        //     <Routes>
-        //         <Route exact path='/' element={<Form title="Enter Your Text Below" view={screen} smallScreen={handletoSmallScreen} fullScreen={handletoFullScreen} />} />
-        //         <Route exact path='/about' element={<About />} />
-        //     </Routes>
-        // </Router>
+            <Routes>
+                <Route exact path='/' element={<Form title="Enter Your Text Below" view={screen} smallScreen={handletoSmallScreen} fullScreen={handletoFullScreen} />} />
+                <Route exact path='/about' element={<About />} />
+            </Routes>
+        </Router>
     );
 }
 

@@ -51,7 +51,7 @@ const Form = (props) => {
         color: '#fff',
         position: 'absolute',
         right: '20px',
-        top:'70px',
+        top: '70px',
         fontSize: '13px'
 
     }

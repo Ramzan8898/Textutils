@@ -47,10 +47,12 @@ const Form = (props) => {
     }, 3000);
 
     let alertStyle = {
-        backgroundColor: '#031633',
+        // backgroundColor: '#031633',
         color: '#fff',
         position: 'absolute',
         right: '20px',
+        top:'70px',
+        fontSize: '13px'
 
     }
     const [text, setText] = useState("");
@@ -58,7 +60,7 @@ const Form = (props) => {
         <>
             {/* alert start */}
             {Alert &&
-                <span className="alert rounded-pill pt-1 pb-2 z-3" role="alert" style={alertStyle}>
+                <span className="alert rounded-pill pt-1 pb-2 z-3 bg-success" role="alert" style={alertStyle}>
                     <strong><FaCheckCircle /> {Alert}</strong>
                 </span>
             }

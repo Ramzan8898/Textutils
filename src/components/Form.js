@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaRegHandScissors } from "react-icons/fa";
 import { MdContentCopy, MdOutlineDeleteSweep } from "react-icons/md";
 import { RxLetterCaseUppercase, RxLetterCaseLowercase } from "react-icons/rx";
 import { AiOutlineFullscreenExit, AiOutlineFullscreen } from "react-icons/ai";
+// import { useMediaQuery } from 'react-responsive';
 
 const Form = (props) => {
+
+    // const mobileScreen = useMediaQuery({ maxWidth: 425 });
+    // const mobileScreen = useMediaQuery({ minWidth: 425 });
+    // const laptopScreen = useMediaQuery({ maxWidth: 1024 });
+    // const desktopScreen = useMediaQuery({ minWidth: 1025 });
 
     const [Alert, setAlert] = useState(null);
 
@@ -12,10 +18,20 @@ const Form = (props) => {
         cursor: 'pointer',
     }
 
+    let btnStyle = {
+        backgroundColor: 'transparent',
+        border: 'none'
+    }
+
     function handletoUppercase() {
         let enteredText = text.toUpperCase();
         setText(enteredText);
         showAlert('Text converted to Uppercase successfully');
+    }
+    function handleExtraSpaces() {
+        let enteredText = text.split(/[ ]+/);
+        setText(enteredText.join(" "));
+        showAlert('Extra spaces Removed successfully');
     }
     function handletoLowercase() {
         let enteredText = text.toLowerCase();
@@ -66,17 +82,16 @@ const Form = (props) => {
             }
             {/* alert End */}
             <div className="mb-3 p-5" style={props.view}>
-                <div className=" d-flex justify-content-between" >
-                    <label className='mb-3 h4 ' htmlFor='text' >
-                        <MdOutlineDeleteSweep onClick={handleClear} className="me-3 " style={funcBtnStyle} />
-                        <RxLetterCaseUppercase onClick={handletoUppercase} className="me-3 " style={funcBtnStyle} />
-                        <RxLetterCaseLowercase onClick={handletoLowercase} className="me-3 " style={funcBtnStyle} />
-                        <AiOutlineFullscreen onClick={props.fullScreen} className="me-3 " style={funcBtnStyle} />
-                        <AiOutlineFullscreenExit onClick={props.smallScreen} className="me-3 " style={funcBtnStyle} />
-                        <MdContentCopy onClick={handletoCopy} className="me-3 " style={funcBtnStyle} />
-
+                <div style={resStyle.formTop}  >
+                    <label className='mb-3 h4 ' htmlFor='text'>
+                        <button disabled={text.length === 0} style={btnStyle}> <MdOutlineDeleteSweep onClick={handleClear} className="me-3 icon" style={funcBtnStyle} /></button>
+                        <button disabled={text.length === 0} style={btnStyle}> <RxLetterCaseUppercase onClick={handletoUppercase} className="me-3 icon " style={funcBtnStyle} /></button>
+                        <button disabled={text.length === 0} style={btnStyle}> <RxLetterCaseLowercase onClick={handletoLowercase} className="me-3 icon " style={funcBtnStyle} /></button>
+                        <button disabled={text.length === 0} style={btnStyle}> <MdContentCopy onClick={handletoCopy} className="me-3 icon " style={funcBtnStyle} /></button>
+                        <button disabled={text.length === 0} style={btnStyle}> <FaRegHandScissors onClick={handleExtraSpaces} className='me-3 icon' style={funcBtnStyle} /></button>
+                        <button style={btnStyle}> <AiOutlineFullscreen onClick={props.fullScreen} className="me-3 icon " style={funcBtnStyle} /></button>
+                        <button style={btnStyle}> <AiOutlineFullscreenExit onClick={props.smallScreen} className="me-3 icon " style={funcBtnStyle} /></button>
                     </label>
-
 
                     <div className="detail">
                         <span className='mx-5'><strong>Characters:</strong> {text.length}</span>
@@ -92,12 +107,28 @@ const Form = (props) => {
 
                 <div className="preview mt-5">
                     <h2>Preview</h2>
-                    <p className='border p-3 rounded'>{text.length === 0 ? 'Nothing To Show Here !' : text}</p>
+                    <p className='border-3 border p-3 rounded'>{text.length === 0 ? 'Nothing To Show Here !' : text}</p>
                 </div>
             </div>
 
         </>
     );
+};
+
+const resStyle = {
+    '@media(max-width:425px)': {
+        formTop: {
+            display: 'flex',
+            flexDirection: 'columnReverse'
+        }
+    },
+    '@media(min-width:768px)': {
+        formTop: {
+            // display: 'flex',
+            flexDirection: 'row'
+        }
+    }
 }
+
 
 export default Form;

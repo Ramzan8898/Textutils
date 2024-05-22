@@ -16,13 +16,21 @@ function App() {
             setModetText('Dark Mode');
             document.body.style.color = 'black';
             document.body.style.backgroundColor = 'white'
+            var icons = document.getElementsByClassName('icon');
+            for (var i = 0; i < icons.length; i++) {
+                icons[i].style.color = '';
+            }
         }
         if (darkMode === 'light') {
             setDarkMode('dark');
             setModetText('Light Mode');
-            document.body.style.color = '#FF204E';
-            document.body.style.backgroundColor = '#240750'
+            document.body.style.color = '#C738BD';
+            document.body.style.backgroundColor = '#240750';
 
+            var icons = document.getElementsByClassName('icon');
+            for (var i = 0; i < icons.length; i++) {
+                icons[i].style.color = '#C738BD';
+            }
         }
     }
 

@@ -82,7 +82,7 @@ const Form = (props) => {
             }
             {/* alert End */}
             <div className="mb-3 p-5" style={props.view}>
-                <div style={resStyle.formTop}  >
+                <div className='d-flex justify-content-between'>
                     <label className='mb-3 h4 ' htmlFor='text'>
                         <button disabled={text.length === 0} style={btnStyle}> <MdOutlineDeleteSweep onClick={handleClear} className="me-3 icon" style={funcBtnStyle} /></button>
                         <button disabled={text.length === 0} style={btnStyle}> <RxLetterCaseUppercase onClick={handletoUppercase} className="me-3 icon " style={funcBtnStyle} /></button>
@@ -114,21 +114,6 @@ const Form = (props) => {
         </>
     );
 };
-
-const resStyle = {
-    '@media(max-width:425px)': {
-        formTop: {
-            display: 'flex',
-            flexDirection: 'columnReverse'
-        }
-    },
-    '@media(min-width:768px)': {
-        formTop: {
-            // display: 'flex',
-            flexDirection: 'row'
-        }
-    }
-}
 
 
 export default Form;
